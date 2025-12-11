@@ -135,3 +135,7 @@ body{
 /* small touches */
 .result-card h2{margin:0 0 8px 0;font-size:20px}
 .result-card p{margin:0;color:var(--muted)}
+
+/* Banner Ad Container */
+.ad-banner-container{display:flex;justify-content:center;align-items:center;margin-top:24px;padding:12px;background:rgba(255,255,255,0.02);border-radius:12px;border:1px solid rgba(255,255,255,0.04);min-height:320px}
+.ad-banner-container iframe{max-width:100%;height:auto}
