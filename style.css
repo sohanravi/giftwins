@@ -54,6 +54,13 @@ body{
 @keyframes floatUp{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
 .gift-card{animation:none}
 .gift-card:hover{animation:floatUp 560ms ease-in-out}
+
+/* Ad modal styles */
+.ad-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(1,6,12,0.6);z-index:120;opacity:0;pointer-events:none;transition:opacity .18s ease}
+.ad-modal.visible{opacity:1;pointer-events:auto}
+.ad-panel{background:linear-gradient(180deg,#02060a,#08121a);padding:12px;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.7);max-width:920px;width:92%;max-height:88vh;display:flex;flex-direction:column;align-items:stretch}
+.ad-panel iframe{width:100%;height:62vh;border:0;border-radius:8px;background:#000}
+.ad-controls{display:flex;justify-content:center;padding-top:10px}
 .gift-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:0;border:1px solid rgba(255,255,255,0.04);height:160px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .28s ease,box-shadow .28s ease}
 .gift-card:focus{outline:2px solid rgba(184,134,11,0.18)}
 .gift-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.6)}

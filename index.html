@@ -72,5 +72,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.min.js"></script>
   <script src="script.js"></script>
+  <!-- Ad modal (iframe srcdoc) -->
+  <div id="adModal" class="ad-modal" aria-hidden="true">
+    <div class="ad-panel">
+      <iframe id="adFrame" title="ad" sandbox="allow-scripts allow-same-origin"></iframe>
+      <div class="ad-controls"><button id="adClose" class="try-btn">Close Ad</button></div>
+    </div>
+  </div>
 </body>
 </html>
