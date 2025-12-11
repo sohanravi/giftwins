@@ -3,7 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Spin & Win</title>
+  <title>Earn Bitcoin & Rewards Online - Free Gift Cards & Bitcoin Rewards</title>
+  <meta name="description" content="Earn bitcoin, rewards & gift cards instantly. Click to win free bitcoin rewards, gift vouchers & online earnings. Safe, secure & easy earning platform." />
+  <meta name="keywords" content="earn bitcoin, earn rewards, how to earn online money, free bitcoin, gift cards, online earning, bitcoin rewards" />
+  <link rel="canonical" href="https://giftwins.vercel.app/" />
+  
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Earn Bitcoin & Rewards - Win Free Gift Cards Online" />
+  <meta property="og:description" content="Click gift cards to win instant bitcoin rewards & gift vouchers. Earn money online safely." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://giftwins.vercel.app/" />
+  <meta property="og:image" content="https://giftwins.vercel.app/og-image.png" />
+  <meta property="og:site_name" content="GiftWins - Earn Bitcoin Online" />
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Earn Bitcoin & Rewards - Win Free Gift Cards Online" />
+  <meta name="twitter:description" content="Click gift cards to win instant bitcoin rewards & gift vouchers. Earn money online safely." />
+  <meta name="twitter:image" content="https://giftwins.vercel.app/og-image.png" />
+  
+  <!-- Additional Meta Tags -->
+  <meta name="author" content="GiftWins" />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  
+  <!-- Link Tags -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🎁</text></svg>" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,9 +39,9 @@
         <div class="cards-header">
           <div class="header-top">
             <span class="badge">Premium</span>
-            <h1>Check your luck and win a bitcoin</h1>
+            <h1>Earn Bitcoin & Rewards - Click Gift Cards to Win</h1>
           </div>
-          <p class="lead">Click any gift card below to reveal — it depends on your luck.</p>
+          <p class="lead">🎉 Click any gift card below to reveal and earn instant bitcoin rewards, gift vouchers & online earnings. No registration needed!</p>
         </div>
         <div class="cards-area">
           <div class="cards" id="cards">
@@ -93,5 +119,88 @@
       <div class="ad-controls"><button id="adClose" class="try-btn">Close Ad</button></div>
     </div>
   </div>
+
+  <!-- FAQ Schema (Structured Data) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I earn bitcoin on GiftWins?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click any gift card on our site to reveal your reward. Each click opens a redemption page where you can collect your bitcoin or gift rewards instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is earning bitcoin with GiftWins safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, GiftWins is a safe platform. We use industry-standard security to protect your information. Never share your private keys or wallet seed phrase with anyone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I earn rewards every day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! You can click gift cards daily to earn rewards. There's no limit to how many times you can play and earn."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What payment methods do you support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We support bitcoin transfers, gift cards, and multiple payment methods. All rewards are transferred directly to your account."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I withdraw my earnings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Once you've earned rewards, you can withdraw them directly to your wallet or preferred payment method. Withdrawal times vary by payment method."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GiftWins",
+    "url": "https://giftwins.vercel.app/",
+    "logo": "https://giftwins.vercel.app/logo.png",
+    "description": "Earn bitcoin and rewards by clicking gift cards. Free online earning platform.",
+    "sameAs": [
+      "https://twitter.com/giftwins",
+      "https://facebook.com/giftwins"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "email": "support@giftwins.com"
+    }
+  }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.min.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </body>
 </html>
