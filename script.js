@@ -10,4 +10,3 @@
 
   cards.forEach(c=> c.addEventListener('click', onCardClick));
 })();
-        }catch(e){ /* ignore cross-origin access errors */ }
