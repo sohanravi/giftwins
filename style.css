@@ -27,6 +27,33 @@ body{
 .cards-panel{max-width:920px;margin:0 auto 18px;padding:20px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 12px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04);position:relative;overflow:hidden}
 .cards-panel:before{content:'';position:absolute;inset:-40% -10% auto -10%;height:220px;background:radial-gradient(circle at 10% 20%, rgba(184,134,11,0.06), transparent 10%), linear-gradient(90deg, rgba(255,255,255,0.02), transparent 30%);transform:rotate(-12deg);pointer-events:none}
 .cards-panel:after{content:'';position:absolute;right:-60px;top:-40px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,215,120,0.04), transparent 40%);pointer-events:none}
+/* Header badge */
+.cards-header .header-top{display:flex;align-items:center;gap:12px;justify-content:center}
+.cards-header .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,#ffd966,#b8860b);color:#071017;font-weight:800;font-size:13px;box-shadow:0 6px 18px rgba(184,134,11,0.08)}
+
+/* Card decorative panels + premium finishes */
+.gift-card{position:relative;overflow:visible}
+.gift-card::before{content:'';position:absolute;inset:6px;border-radius:12px;z-index:0;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));pointer-events:none;transition:transform .36s ease,opacity .36s ease}
+.gift-card::after{content:'';position:absolute;right:-30px;top:-30px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.04), transparent 40%);opacity:0.18;pointer-events:none}
+.gift-card .card-inner{position:relative;z-index:2}
+.gift-card .card-front{font-size:36px;filter:drop-shadow(0 6px 20px rgba(0,0,0,0.5))}
+.gift-card .card-back{font-size:15px}
+.gift-card:hover::before{transform:scale(1.02);opacity:1}
+.gift-card.disabled{opacity:0.7;pointer-events:none}
+
+/* subtle ribbon accent on top-left */
+.gift-card .ribbon{position:absolute;left:8px;top:8px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.06);font-weight:700;font-size:12px;z-index:3}
+
+/* per-card panel customization to make backs distinct */
+.gift-card[data-index="0"] .card-back{background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.45));}
+.gift-card[data-index="1"] .card-back{background:linear-gradient(180deg,rgba(0,0,0,0.52),rgba(0,0,0,0.46));}
+.gift-card[data-index="2"] .card-back{background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.42));}
+.gift-card[data-index="3"] .card-back{background:linear-gradient(180deg,rgba(0,0,0,0.54),rgba(0,0,0,0.48));}
+
+/* premium micro-animations */
+@keyframes floatUp{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+.gift-card{animation:none}
+.gift-card:hover{animation:floatUp 560ms ease-in-out}
 .gift-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:0;border:1px solid rgba(255,255,255,0.04);height:160px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .28s ease,box-shadow .28s ease}
 .gift-card:focus{outline:2px solid rgba(184,134,11,0.18)}
 .gift-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.6)}
