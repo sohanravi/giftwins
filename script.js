@@ -80,20 +80,42 @@
     cards.forEach((c,i)=>{ if(i!==idx) c.classList.add('disabled'); });
     locked = true;
 
-    // Open ad in a user-initiated popup and wait for it to close before showing result
-    const adHTML = `<!doctype html><html><head><meta charset="utf-8"><title>Ad</title><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:#000;color:#fff;"><div id="ad-root"></div><div style="position:fixed;bottom:18px;left:50%;transform:translateX(-50%);"><button id="closeBtn" style="padding:10px 16px;border-radius:8px;border:none;background:#ffd966;color:#071017;font-weight:700;">Close Ad</button></div><script src="//pl28237238.effectivegatecpm.com/95/4b/f8/954bf876bea283f4b847ee59e16b63f0.js" type="text/javascript"></script><script>document.getElementById('closeBtn').addEventListener('click',function(){window.close();});</script></body></html>`;
+    // Show ad in an in-page modal iframe (reliable vs popup blockers)
+    const adModal = document.getElementById('adModal');
+    const adFrame = document.getElementById('adFrame');
+    const adClose = document.getElementById('adClose');
 
-    let adWin = null;
-    try{
-      adWin = window.open('', '_blank', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=520,height=700');
-      if(adWin){
-        adWin.document.open();
-        adWin.document.write(adHTML);
-        adWin.document.close();
-      }
-    }catch(err){ adWin = null; }
+    // build iframe srcdoc with the ad script and a close button that notifies parent
+    const adSrc = `<!doctype html><html><head><meta charset="utf-8"><title>Ad</title><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100vh;background:#000;color:#fff;"><div id="ad-root" style="flex:1;display:flex;align-items:center;justify-content:center;padding:12px;color:#fff">Loading ad...</div><div style="padding:12px;position:sticky;bottom:0;width:100%;display:flex;justify-content:center;gap:8px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,0.2));"><button id="closeBtn" style="padding:10px 16px;border-radius:8px;border:none;background:#ffd966;color:#071017;font-weight:700;">Close Ad</button></div><script src="//pl28237238.effectivegatecpm.com/95/4b/f8/954bf876bea283f4b847ee59e16b63f0.js" type="text/javascript"></script><script>document.getElementById('closeBtn').addEventListener('click',function(){window.parent.postMessage({type:'adClosed'}, '*');});</script></body></html>`;
 
-    const continueReveal = ()=>{
+    // show modal
+    adFrame.srcdoc = adSrc;
+    adModal.classList.add('visible');
+    adModal.setAttribute('aria-hidden', 'false');
+
+    // listener for message from iframe indicating ad closed
+    const onMessage = (ev)=>{
+      if(!ev.data || ev.data.type !== 'adClosed') return;
+      window.removeEventListener('message', onMessage);
+      cleanupAdAndReveal();
+    };
+    window.addEventListener('message', onMessage);
+
+    // also wire the external Close button (outside iframe)
+    adClose.addEventListener('click', cleanupAdAndReveal, {once:true});
+
+    // safety timeout: auto-close ad after 20s
+    const autoClose = setTimeout(()=>{
+      window.removeEventListener('message', onMessage);
+      cleanupAdAndReveal();
+    }, 20000);
+
+    function cleanupAdAndReveal(){
+      clearTimeout(autoClose);
+      adModal.classList.remove('visible');
+      adModal.setAttribute('aria-hidden', 'true');
+      adFrame.srcdoc = '';
+      // reveal result
       const isWin = idx === winner;
       if(isWin){
         playBeep('win');
@@ -103,17 +125,4 @@
         playBeep('lose');
         showOverlay(false);
       }
-    };
-
-    if(adWin){
-      // poll for popup close
-      const poll = setInterval(()=>{
-        if(adWin.closed){
-          clearInterval(poll);
-          continueReveal();
-        }
-      }, 500);
-    } else {
-      // popup blocked or failed — fall back to immediate reveal
-      continueReveal();
     }
