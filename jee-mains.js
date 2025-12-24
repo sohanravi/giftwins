@@ -1,10 +1,28 @@
 
 // JEE Mains page specific JS
 document.addEventListener('DOMContentLoaded', function() {
-	const class11Card = document.getElementById('class11Card');
-	const class12Card = document.getElementById('class12Card');
-	const subjectGrid = document.getElementById('subjectGrid');
-	const jeeClassGrid = document.getElementById('jeeClassGrid');
+const class11Card = document.getElementById('class11Card');
+const class12Card = document.getElementById('class12Card');
+const subjectGrid = document.getElementById('subjectGrid');
+const jeeClassGrid = document.getElementById('jeeClassGrid');
+
+// Add click and keyboard event listeners for Class 11 and Class 12 cards
+class11Card.addEventListener('click', function() {
+	showSubjects('Class 11');
+});
+class11Card.addEventListener('keydown', function(e) {
+	if (e.key === 'Enter' || e.key === ' ') {
+		showSubjects('Class 11');
+	}
+});
+class12Card.addEventListener('click', function() {
+	showSubjects('Class 12');
+});
+class12Card.addEventListener('keydown', function(e) {
+	if (e.key === 'Enter' || e.key === ' ') {
+		showSubjects('Class 12');
+	}
+});
 
 	function showSubjects(className) {
 		subjectGrid.innerHTML = '';
