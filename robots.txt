@@ -1,4 +1,4 @@
-# GiftWins - Earn Bitcoin & Rewards Platform
+
 User-agent: *
 Allow: /
 Disallow: /admin
@@ -9,4 +9,4 @@ Disallow: /temp
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://giftwins.vercel.app/sitemap.xml
+
