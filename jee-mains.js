@@ -49,46 +49,46 @@ class12Card.addEventListener('keydown', function(e) {
 	function showPhysicsChapters() {
 		subjectGrid.innerHTML = '';
 		const chapters = [
-			'Mathematics in Physics',
-			'Units and Dimensions',
-			'Motion in One Dimension',
-			'Motion in Two Dimensions',
-			'Laws of Motion',
-			'Work, Power and Energy',
-			'Center of Mass, Momentum and Collisions',
-			'Rotational Motion',
-			'Gravitation',
-			'Mechanical Properties of Solids',
-			'Mechanical Properties of Fluids',
-			'Thermal Properties of Matter',
-			'Thermodynamics',
-			'Kinetic Theory of Gases',
-			'Oscillations',
-			'Waves and Sound',
-			'Electrostatics',
-			'Capacitance',
-			'Current Electricity',
-			'Magnetic Effects of Current',
-			'Magnetic Properties of Matter',
-			'Electromagnetic Induction',
-			'Alternating Current',
-			'Electromagnetic Waves',
-			'Ray Optics',
-			'Wave Optics',
-			'Dual Nature of Matter',
-			'Atomic Physics',
-			'Nuclear Physics',
-			'Semiconductors',
-			'Experimental Physics'
+			{ name: 'Mathematics in Physics', icon: '📐' },
+			{ name: 'Units and Dimensions', icon: '📏' },
+			{ name: 'Motion in One Dimension', icon: '➡️' },
+			{ name: 'Motion in Two Dimensions', icon: '🔄' },
+			{ name: 'Laws of Motion', icon: '⚖️' },
+			{ name: 'Work, Power and Energy', icon: '💡' },
+			{ name: 'Center of Mass, Momentum and Collisions', icon: '🎯' },
+			{ name: 'Rotational Motion', icon: '🌀' },
+			{ name: 'Gravitation', icon: '🌍' },
+			{ name: 'Mechanical Properties of Solids', icon: '🧱' },
+			{ name: 'Mechanical Properties of Fluids', icon: '💧' },
+			{ name: 'Thermal Properties of Matter', icon: '🔥' },
+			{ name: 'Thermodynamics', icon: '♨️' },
+			{ name: 'Kinetic Theory of Gases', icon: '🌬️' },
+			{ name: 'Oscillations', icon: '🔔' },
+			{ name: 'Waves and Sound', icon: '🌊' },
+			{ name: 'Electrostatics', icon: '⚡' },
+			{ name: 'Capacitance', icon: '🔋' },
+			{ name: 'Current Electricity', icon: '🔌' },
+			{ name: 'Magnetic Effects of Current', icon: '🧲' },
+			{ name: 'Magnetic Properties of Matter', icon: '🧲' },
+			{ name: 'Electromagnetic Induction', icon: '🔄' },
+			{ name: 'Alternating Current', icon: '🔁' },
+			{ name: 'Electromagnetic Waves', icon: '📡' },
+			{ name: 'Ray Optics', icon: '🔦' },
+			{ name: 'Wave Optics', icon: '🌈' },
+			{ name: 'Dual Nature of Matter', icon: '⚛️' },
+			{ name: 'Atomic Physics', icon: '🔬' },
+			{ name: 'Nuclear Physics', icon: '☢️' },
+			{ name: 'Semiconductors', icon: '💾' },
+			{ name: 'Experimental Physics', icon: '🧪' }
 		];
 		chapters.forEach(chapter => {
 			const div = document.createElement('div');
 			div.className = 'chapter-card';
-			div.innerHTML = `<h3>${chapter}</h3>`;
+			div.innerHTML = `<span class="chapter-icon">${chapter.icon}</span><h3>${chapter.name}</h3>`;
 			subjectGrid.appendChild(div);
 		});
 		subjectGrid.style.display = 'flex';
 		subjectGrid.style.flexDirection = 'column';
 		subjectGrid.style.alignItems = 'center';
-	}
+		}
 });
