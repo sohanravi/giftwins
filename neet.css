@@ -1,0 +1,4 @@
+/* NEET specific styles */
+body { background: #f7f9ff; }
+.card { background: #fff; color: #222; border-radius: 14px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2rem; margin-bottom: 1.5rem; }
+.card h2 { color: #7b61ff; }
