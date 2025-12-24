@@ -1,3 +1,23 @@
+.chapter-card {
+	background: #fff;
+	color: #222;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(123,97,255,0.08);
+	padding: 0.8rem 1.2rem;
+	margin-bottom: 1rem;
+	min-width: 220px;
+	max-width: 400px;
+	width: 100%;
+	font-size: 1rem;
+	transition: box-shadow .18s;
+	border: 1px solid #ececff;
+	text-align: left;
+}
+.chapter-card h3 {
+	margin: 0;
+	font-size: 1.05rem;
+	color: #7b61ff;
+}
 .grid {
 	display: flex;
 	gap: 2rem;
