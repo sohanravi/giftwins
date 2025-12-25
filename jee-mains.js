@@ -184,10 +184,20 @@ class12Card.addEventListener('keydown', function(e) {
 			   qObj.options.forEach((opt, optIdx) => {
 				   const optBtn = document.createElement('button');
 				   optBtn.textContent = String.fromCharCode(65+optIdx) + ". " + opt;
-				   optBtn.className = 'option-btn';
+				   optBtn.className = 'option-btn premium-option-btn';
 				   optBtn.setAttribute('aria-label', opt);
 				   optBtn.style.margin = '0';
 				   optBtn.addEventListener('click', function() {
+					   // Disable all options after selection
+					   Array.from(optsWrap.children).forEach(btn => btn.disabled = true);
+					   // Color correct/incorrect
+					   Array.from(optsWrap.children).forEach((btn, idx) => {
+						   if(idx === qObj.answer) {
+							   btn.classList.add('option-correct');
+						   } else {
+							   btn.classList.add('option-incorrect');
+						   }
+					   });
 					   showAnswer(qDiv, qObj, optIdx);
 				   });
 				   optsWrap.appendChild(optBtn);
