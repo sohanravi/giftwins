@@ -166,17 +166,27 @@ class12Card.addEventListener('keydown', function(e) {
 		   questions.forEach((qObj, qIdx) => {
 			   const qDiv = document.createElement('div');
 			   qDiv.className = 'question-block premium-mcq';
-			   qDiv.innerHTML = `<h4><span style="color:#7b61ff;font-weight:700;">Q${qIdx+1}.</span> ${qObj.q}</h4>`;
+			   // Question
+			   const qTitle = document.createElement('h4');
+			   qTitle.innerHTML = `<span style=\"color:#7b61ff;font-weight:700;\">Q${qIdx+1}.</span> ${qObj.q}`;
+			   qDiv.appendChild(qTitle);
+			   // Options container
+			   const optsWrap = document.createElement('div');
+			   optsWrap.style.display = 'flex';
+			   optsWrap.style.flexDirection = 'column';
+			   optsWrap.style.gap = '0.5rem';
 			   qObj.options.forEach((opt, optIdx) => {
 				   const optBtn = document.createElement('button');
 				   optBtn.textContent = String.fromCharCode(65+optIdx) + ". " + opt;
 				   optBtn.className = 'option-btn';
 				   optBtn.setAttribute('aria-label', opt);
+				   optBtn.style.margin = '0';
 				   optBtn.addEventListener('click', function() {
 					   showAnswer(qDiv, qObj, optIdx);
 				   });
-				   qDiv.appendChild(optBtn);
+				   optsWrap.appendChild(optBtn);
 			   });
+			   qDiv.appendChild(optsWrap);
 			   subjectGrid.appendChild(qDiv);
 		   });
 	   }
