@@ -1,3 +1,14 @@
+.jee-mains-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #fff;
+	background: linear-gradient(90deg,#7b61ff,#ff7a7a);
+	border-radius: 6px;
+	padding: 0.18em 0.7em;
+	margin-left: 0.7em;
+	letter-spacing: 0.5px;
+	display: inline-block;
+}
 /* Premium MCQ Question Block Styles (moved from style.css) */
 /* Premium MCQ Question Block Styles (light background, black text) */
 .premium-mcq {
@@ -8,6 +19,7 @@
 	margin: 1.5rem 0;
 	max-width: 540px;
 	width: 100%;
+	min-width: 0;
 	border: 2px solid #7b61ff33;
 	position: relative;
 	transition: box-shadow 0.2s;
@@ -15,6 +27,24 @@
 	flex-direction: column;
 	align-items: stretch;
 	color: #111;
+	word-break: break-word;
+	box-sizing: border-box;
+}
+@media (max-width: 700px) {
+	.premium-mcq {
+		max-width: 98vw;
+		min-width: 0;
+		padding: 1.1rem 0.5rem 1rem 0.5rem;
+		margin: 1rem 0;
+		font-size: 0.98rem;
+	}
+	.premium-mcq h4 {
+		font-size: 1.01rem;
+	}
+	.premium-mcq .option-btn {
+		font-size: 0.97rem;
+		padding: 0.6rem 0.7rem;
+	}
 }
 .premium-mcq h4 {
 	margin: 0 0 1.2rem 0;
