@@ -81,14 +81,116 @@ class12Card.addEventListener('keydown', function(e) {
 			{ name: 'Semiconductors', icon: '💾' },
 			{ name: 'Experimental Physics', icon: '🧪' }
 		];
-		chapters.forEach(chapter => {
-			const div = document.createElement('div');
-			div.className = 'chapter-card';
-			div.innerHTML = `<span class="chapter-icon">${chapter.icon}</span><h3>${chapter.name}</h3>`;
-			subjectGrid.appendChild(div);
-		});
-		subjectGrid.style.display = 'flex';
-		subjectGrid.style.flexDirection = 'column';
-		subjectGrid.style.alignItems = 'center';
-		}
+		   chapters.forEach((chapter, idx) => {
+			   const div = document.createElement('div');
+			   div.className = 'chapter-card';
+			   div.innerHTML = `<span class="chapter-icon">${chapter.icon}</span><h3>${chapter.name}</h3>`;
+			   div.tabIndex = 0;
+			   div.addEventListener('click', () => showPhysicsQuestions(idx));
+			   div.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { showPhysicsQuestions(idx); }});
+			   subjectGrid.appendChild(div);
+		   });
+		   subjectGrid.style.display = 'flex';
+		   subjectGrid.style.flexDirection = 'column';
+		   subjectGrid.style.alignItems = 'center';
+	   }
+
+	   // Dummy MCQs for each chapter (2-4 per chapter)
+	   const physicsQuestions = [
+		   [ // Mathematics in Physics
+			   {
+				   q: 'Which of the following is a derived quantity?',
+				   options: ['Length', 'Mass', 'Velocity', 'Time'],
+				   answer: 2,
+				   explanation: 'Velocity is derived from length and time.'
+			   },
+			   {
+				   q: 'The SI unit of force is?',
+				   options: ['Joule', 'Newton', 'Watt', 'Pascal'],
+				   answer: 1,
+				   explanation: 'Force is measured in Newtons (N).'
+			   }
+		   ],
+		   [ // Units and Dimensions
+			   {
+				   q: 'Which of the following pairs has the same dimensions?',
+				   options: ['Force and Pressure', 'Work and Energy', 'Power and Energy', 'Force and Work'],
+				   answer: 1,
+				   explanation: 'Work and Energy both have dimensions of ML^2T^-2.'
+			   },
+			   {
+				   q: 'Dimensional formula of pressure is?',
+				   options: ['MLT^-2', 'ML^2T^-2', 'ML^-1T^-2', 'M^2L^2T^-2'],
+				   answer: 2,
+				   explanation: 'Pressure = Force/Area, so ML^-1T^-2.'
+			   }
+		   ],
+		   [ // Motion in One Dimension
+			   {
+				   q: 'A body moves with constant speed in a straight line. Its acceleration is?',
+				   options: ['Zero', 'Constant', 'Increasing', 'Decreasing'],
+				   answer: 0,
+				   explanation: 'Constant speed in a straight line means zero acceleration.'
+			   },
+			   {
+				   q: 'Displacement can be zero when?',
+				   options: ['Distance is zero', 'Body returns to initial position', 'Speed is constant', 'Acceleration is zero'],
+				   answer: 1,
+				   explanation: 'If the body returns to its starting point, displacement is zero.'
+			   }
+		   ],
+		   [ // Motion in Two Dimensions
+			   {
+				   q: 'Projectile motion is an example of?',
+				   options: ['1D motion', '2D motion', '3D motion', 'Circular motion'],
+				   answer: 1,
+				   explanation: 'Projectile motion has both x and y components.'
+			   },
+			   {
+				   q: 'At the highest point of projectile, the vertical component of velocity is?',
+				   options: ['Maximum', 'Zero', 'Minimum', 'Equal to horizontal'],
+				   answer: 1,
+				   explanation: 'At the top, vertical velocity is zero.'
+			   }
+		   ],
+		   // ... Add 2-4 questions for each chapter similarly ...
+	   ];
+
+	   function showPhysicsQuestions(chapterIdx) {
+		   subjectGrid.innerHTML = '';
+		   const questions = physicsQuestions[chapterIdx] || [];
+		   if (questions.length === 0) {
+			   subjectGrid.innerHTML = '<p>No questions available for this chapter yet.</p>';
+			   return;
+		   }
+		   questions.forEach((qObj, qIdx) => {
+			   const qDiv = document.createElement('div');
+			   qDiv.className = 'question-block';
+			   qDiv.innerHTML = `<h4>Q${qIdx+1}: ${qObj.q}</h4>`;
+			   qObj.options.forEach((opt, optIdx) => {
+				   const optBtn = document.createElement('button');
+				   optBtn.textContent = opt;
+				   optBtn.className = 'option-btn';
+				   optBtn.addEventListener('click', function() {
+					   showAnswer(qDiv, qObj, optIdx);
+				   });
+				   qDiv.appendChild(optBtn);
+			   });
+			   subjectGrid.appendChild(qDiv);
+		   });
+	   }
+
+	   function showAnswer(qDiv, qObj, selectedIdx) {
+		   // Remove previous answer if any
+		   const prev = qDiv.querySelector('.answer-block');
+		   if (prev) prev.remove();
+		   const ansDiv = document.createElement('div');
+		   ansDiv.className = 'answer-block';
+		   if (selectedIdx === qObj.answer) {
+			   ansDiv.innerHTML = `<span style="color:green;font-weight:bold;">Correct!</span> <br> Explanation: ${qObj.explanation}`;
+		   } else {
+			   ansDiv.innerHTML = `<span style="color:red;font-weight:bold;">Incorrect.</span> <br> Correct Answer: <b>${qObj.options[qObj.answer]}</b><br> Explanation: ${qObj.explanation}`;
+		   }
+		   qDiv.appendChild(ansDiv);
+	   }
 });
