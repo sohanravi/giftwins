@@ -156,6 +156,7 @@ class12Card.addEventListener('keydown', function(e) {
 		   // ... Add 2-4 questions for each chapter similarly ...
 	   ];
 
+	   // Show one question at a time with navigation
 	   function showPhysicsQuestions(chapterIdx) {
 		   subjectGrid.innerHTML = '';
 		   const questions = physicsQuestions[chapterIdx] || [];
@@ -163,12 +164,17 @@ class12Card.addEventListener('keydown', function(e) {
 			   subjectGrid.innerHTML = '<p>No questions available for this chapter yet.</p>';
 			   return;
 		   }
-		   questions.forEach((qObj, qIdx) => {
+
+		   let currentQuestion = 0;
+
+		   function renderQuestion() {
+			   subjectGrid.innerHTML = '';
+			   const qObj = questions[currentQuestion];
 			   const qDiv = document.createElement('div');
 			   qDiv.className = 'question-block premium-mcq';
 			   // Question
 			   const qTitle = document.createElement('h4');
-			   qTitle.innerHTML = `<span style=\"color:#7b61ff;font-weight:700;\">Q${qIdx+1}.</span> ${qObj.q}`;
+			   qTitle.innerHTML = `<span style="color:#7b61ff;font-weight:700;">Q${currentQuestion+1}.</span> ${qObj.q}`;
 			   qDiv.appendChild(qTitle);
 			   // Options container
 			   const optsWrap = document.createElement('div');
@@ -187,8 +193,52 @@ class12Card.addEventListener('keydown', function(e) {
 				   optsWrap.appendChild(optBtn);
 			   });
 			   qDiv.appendChild(optsWrap);
+
+			   // Navigation buttons
+			   const navDiv = document.createElement('div');
+			   navDiv.style.marginTop = '1rem';
+			   navDiv.style.display = 'flex';
+			   navDiv.style.gap = '1rem';
+
+			   const prevBtn = document.createElement('button');
+			   prevBtn.textContent = 'Previous';
+			   prevBtn.disabled = currentQuestion === 0;
+			   prevBtn.onclick = function() {
+				   if (currentQuestion > 0) {
+					   currentQuestion--;
+					   renderQuestion();
+				   }
+			   };
+
+			   const nextBtn = document.createElement('button');
+			   nextBtn.textContent = 'Next';
+			   nextBtn.disabled = currentQuestion === questions.length - 1;
+			   nextBtn.onclick = function() {
+				   if (currentQuestion < questions.length - 1) {
+					   currentQuestion++;
+					   renderQuestion();
+				   }
+			   };
+
+			   const skipBtn = document.createElement('button');
+			   skipBtn.textContent = 'Skip';
+			   skipBtn.disabled = currentQuestion === questions.length - 1;
+			   skipBtn.onclick = function() {
+				   if (currentQuestion < questions.length - 1) {
+					   currentQuestion++;
+					   renderQuestion();
+				   }
+			   };
+
+			   navDiv.appendChild(prevBtn);
+			   navDiv.appendChild(nextBtn);
+			   navDiv.appendChild(skipBtn);
+			   qDiv.appendChild(navDiv);
+
 			   subjectGrid.appendChild(qDiv);
-		   });
+		   }
+
+		   renderQuestion();
 	   }
 
 	   function showAnswer(qDiv, qObj, selectedIdx) {
