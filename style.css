@@ -1,3 +1,57 @@
+/* Premium MCQ Styles */
+.question-block {
+  background: linear-gradient(120deg, rgba(123,97,255,0.10), rgba(255,122,122,0.10));
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(123,97,255,0.10);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  margin: 1.2rem 0;
+  max-width: 520px;
+  width: 100%;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+.question-block h4 {
+  margin: 0 0 1.1rem 0;
+  font-size: 1.13rem;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.option-btn {
+  display: block;
+  width: 100%;
+  margin: 0.4rem 0;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid rgba(123,97,255,0.13);
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(123,97,255,0.04));
+  color: #e6eef8;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.18s, border 0.18s, color 0.18s;
+  text-align: left;
+  outline: none;
+}
+.option-btn:hover, .option-btn:focus {
+  background: linear-gradient(90deg, #7b61ff 0%, #ff7a7a 100%);
+  color: #fff;
+  border: 1.5px solid #7b61ff;
+}
+.answer-block {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(123,97,255,0.13), rgba(255,122,122,0.13));
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 2px 12px rgba(123,97,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.09);
+}
+.answer-block b {
+  color: #ff7a7a;
+}
 :root{
   --bg-1: linear-gradient(180deg,#0f172a 0%, #071026 100%);
   --glass: rgba(255,255,255,0.06);

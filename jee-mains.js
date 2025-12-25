@@ -165,12 +165,13 @@ class12Card.addEventListener('keydown', function(e) {
 		   }
 		   questions.forEach((qObj, qIdx) => {
 			   const qDiv = document.createElement('div');
-			   qDiv.className = 'question-block';
-			   qDiv.innerHTML = `<h4>Q${qIdx+1}: ${qObj.q}</h4>`;
+			   qDiv.className = 'question-block premium-mcq';
+			   qDiv.innerHTML = `<h4><span style="color:#7b61ff;font-weight:700;">Q${qIdx+1}.</span> ${qObj.q}</h4>`;
 			   qObj.options.forEach((opt, optIdx) => {
 				   const optBtn = document.createElement('button');
-				   optBtn.textContent = opt;
+				   optBtn.textContent = String.fromCharCode(65+optIdx) + ". " + opt;
 				   optBtn.className = 'option-btn';
+				   optBtn.setAttribute('aria-label', opt);
 				   optBtn.addEventListener('click', function() {
 					   showAnswer(qDiv, qObj, optIdx);
 				   });
